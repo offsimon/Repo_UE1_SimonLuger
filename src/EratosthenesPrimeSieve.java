@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class EratosthenesPrimeSieve implements PrimeSieve {
@@ -11,7 +12,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
     @Override
     public boolean isPrime(int p) {
 
-        boolean[] sieveResult = sieveAlgorithm(p+1);
+        boolean[] sieveResult = sieveAlgorithm(p + 1);
         return sieveResult[p];
     }
 
@@ -22,7 +23,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
 
         for (int i = 2; i < primes.length; i++) {
 
-            if(primes[i]) {
+            if (primes[i]) {
                 System.out.print(i + ", ");
             }
         }
@@ -31,7 +32,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
 
     public boolean[] sieveAlgorithm(int limit) {
 
-        boolean[] primes = new boolean[limit];
+        boolean[] primes = new boolean[limit+1];
         Arrays.fill(primes, true);
         primes[0] = false;
         primes[1] = false;
@@ -50,4 +51,43 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
 
         return primes;
     }
+
+    public void evenNumberSuspicionAlgorithm(int limit) {
+
+        boolean[] sieve = sieveAlgorithm(limit);
+        ArrayList<Integer> primeList = new ArrayList<>();
+        int curPrime = -1;
+
+        for (int i = 2; i < sieve.length; i++) {
+
+            if (sieve[i]) {
+                primeList.add(i);
+            }
+        }
+
+        for (int i = 4; i <= limit; i++) {
+
+            if (i % 2 == 0) {
+
+                for (int j = 0; j < primeList.size(); j++) {
+
+                    for (int k = 0; k < primeList.size(); k++) {
+
+                        if (primeList.get(j) + primeList.get(k) == i) {
+                            System.out.println(i + " summe: " + i + " = " + primeList.get(j) + " + " + primeList.get(k));
+                            k = primeList.size();
+                            j = primeList.size();
+                        }
+                    }
+
+                }
+
+            }
+
+
+        }
+
+    }
+
+
 }
