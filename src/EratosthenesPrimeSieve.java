@@ -10,17 +10,19 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
 
     @Override
     public boolean isPrime(int p) {
-        return false;
+
+        boolean[] sieveResult = sieveAlgorithm(p+1);
+        return sieveResult[p];
     }
 
     @Override
     public void printPrimes() {
 
-        boolean[] primes = sieveAlgorithm(100);
+        boolean[] primes = sieveAlgorithm(upperLimit);
 
         for (int i = 2; i < primes.length; i++) {
 
-            if(primes[i] == true) {
+            if(primes[i]) {
                 System.out.print(i + ", ");
             }
         }
@@ -36,7 +38,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
 
         for (int i = 0; i < primes.length / 2; i++) {
 
-            if (primes[i] == true) {
+            if (primes[i]) {
                 for (int j = i + 1; j < primes.length; j++) {
 
                     if (j % i == 0) {
