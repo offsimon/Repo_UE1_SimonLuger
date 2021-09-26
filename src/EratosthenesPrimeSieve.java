@@ -37,13 +37,18 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
         primes[0] = false;
         primes[1] = false;
 
-        for (int i = 0; i < primes.length / 2; i++) {
+        for (int i = 2; i < primes.length / 2; i++) {
+
+            for (int j = i+i; j < primes.length; j += i) {//set multiples to false
+                primes[j] = false;
+            }
 
             if (primes[i]) {
                 for (int j = i + 1; j < primes.length; j++) {
 
                     if (j % i == 0) {
                         primes[j] = false;
+                        j = primes.length+1;
                     }
                 }
             }
@@ -56,7 +61,6 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
 
         boolean[] sieve = sieveAlgorithm(limit);
         ArrayList<Integer> primeList = new ArrayList<>();
-        int curPrime = -1;
 
         for (int i = 2; i < sieve.length; i++) {
 

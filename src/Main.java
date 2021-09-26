@@ -2,14 +2,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        EratosthenesPrimeSieve er = new EratosthenesPrimeSieve(13);
+        EratosthenesPrimeSieve er = new EratosthenesPrimeSieve(100);
 
-        //Beispiel 1
+        //Task 1
         er.printPrimes();
-        System.out.println(er.isPrime(13));
+        System.out.println(er.isPrime(100));
 
-        //Beispiel 2
-        er.evenNumberSuspicionAlgorithm(13);
+        //Task 2
+        er.evenNumberSuspicionAlgorithm(100);
 
     }
 }
